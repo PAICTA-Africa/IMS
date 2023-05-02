@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Clocking View{% endblock %}
+{% block content %}
+    <div class="main-wrapper"> 
+        <div class="header">
+                    
+            <!-- Logo -->
+            <div class="header-left">
+                <a href="{% url 'index' %}" class="logo">
+                    <img src="{% static 'assets/img/Paicta-Logo-Png-1.png' %}" width="40" height="40" alt="">
+                </a>
+            </div>
+            <!-- /Logo -->
+            
+            <a id="toggle_btn" href="javascript:void(0);">
+                <span class="bar-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </a>
+            
+            <!-- Header Title -->
+            <div class="page-title-box">
+                <h3>Clocking View</h3>
+            </div>
+            <!-- /Header Title -->
+            
+            <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
+            
+            <!-- Header Menu -->
+            <ul class="nav user-menu">
+            
+                <!-- Search -->
+                <li class="nav-item">
+                    <div class="top-nav-search">
+                        <a href="javascript:void(0);" class="responsive-search">
+                            <i class="fa fa-search"></i>
+                    </a>
+                        <form action="search.html">
+                            <input class="form-control" type="text" placeholder="Search here">
+                            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item dropdown has-arrow main-drop">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img"><img src="{% static 'assets/img/profiles/avatar-21.jpg'%}" alt="">
+                        <span class="status online"></span></span>
+                        <span>{{ user.first_name }} {{user.last_name}}</span>
+                        {% comment %} <span>Welcome, user</span> {% endcomment %}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
+                        <a class="dropdown-item" href="settings.html">Settings</a>
+                        <a class="dropdown-item" href="{% url 'account' %}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- /Header Menu -->
+            
+            <!-- Mobile Menu -->
+            <div class="dropdown mobile-user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </div>
+            <!-- /Mobile Menu -->
+            
+        </div> 
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title"> 
+                            <span>Main</span>
+                        </li>
+                        <li class="submenu">
+                            <a href="{% url 'index' %}" class="active"><i class="la la-clock"></i> <span> Clocking View</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="#">Timesheet Success</a></li>
+                                <li><a href="#">Pending Request</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title">Welcome, {{user.first_name}}!</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active">Clocking View</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+							<div class="card dash-widget">
+								<div class="card-body">
+									<span class="dash-widget-icon"><i class="fa fa-map"></i></span>
+									<div class="dash-widget-info">
+										<h3>Location</h3>
+										<span>Location</span>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+							<div class="card dash-widget">
+								<div class="card-body">
+									<span class="dash-widget-icon"><i class="fa fa-mobile-signal"></i></span>
+									<div class="dash-widget-info">
+										<h3>IP</h3>
+										<span>{{user.ip_address}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+							<div class="card dash-widget">
+								<div class="card-body">
+									<span class="dash-widget-icon"><i class="fa fa-clock"></i></span>
+									<div class="dash-widget-info">
+										<h3>Status</h3>
+										<span>Clocked out</span>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title">Action</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active">Click buttons below to initiate timesheet.</li>
+                            </ul>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active" style="font-size: 11px;">You must clock in first to unlock some functions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                    {% comment %} <div style="padding: 17px; border: 2px solid orange; background: wheat; border-radius: 17px;"><center>Error</center></div> {% endcomment %}
+                    <br>
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message | safe }}
+                        </div>
+                    {% endfor %}
+                    <form method="post" action="{% url 'clock_action' user_id=user.id %}">{% csrf_token %}
+                        <div class="row filter-row">
+                            <div class="col-sm-6 col-md-3">  
+                                <div class="form-group form-focus">
+                                    <input type="text" name="myid" class="form-control floating" max-length="13">
+                                    <label class="focus-label">ID Number</label>
+                                </div>
+                            </div>    
+                            <div class="col-sm-6 col-md-3">  
+                                <div class="form-group form-focus">
+                                    <input type="text" name="name" class="form-control floating">
+                                    <label class="focus-label">First Name</label>
+                                </div>
+                            </div>   
+                            <div class="col-sm-6 col-md-3">  
+                                <div class="form-group form-focus">
+                                    <input type="text" name="lastname" class="form-control floating">
+                                    <label class="focus-label">Last Name</label>
+                                </div>
+                            </div>   
+                            <div class="col-sm-6 col-md-3">  
+                                <div class="form-group form-focus">
+                                    <button class="btn btn-success btn-block" type="submit">Clock in</button>
+                                    {% comment %} <a href="{% url 'clock_action' %}" class="btn btn-success btn-block">Clock in</a> {% endcomment %}
+                                </div>
+                                <div class="form-group form-focus">
+                                    <input type="hidden" name="passid" id="passid" value="{{ user.id_number}}">
+                                </div>
+                            </div>   
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

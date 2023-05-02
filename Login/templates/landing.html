@@ -1,0 +1,211 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>PCRAQ | PAICTA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'Lassets/img/favicon.jpg ' %}" rel="icon">
+
+  <link href="{% static 'Lassets/img/apple-touch-icon.jpg ' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'Lassets/vendor/aos/aos.css ' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href=" {% static 'Lassets\vendor\bootstrap\css\font-awesome.min.css.css' %}" rel="stylesheet">
+ 
+  
+
+
+  <!-- Template Main CSS File -->
+  <link href=" {% static 'Lassets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+  
+ 
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <!--<h1 class="logo"><a href="index.html">PAICTA FACIAL CLOCKING SYSTEM</a></h1>-->
+      <!-- Uncomment below if you prefer to use an image logo -->
+       <a href="index.html" class="logo"><img src="{% static 'Lassets/img/PCRAQ Logo.png '%}"   alt="" ></a>
+    
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+        
+         
+         
+          
+          {% if user.is_authenticated   %}
+          
+          <li><a class="nav-link scrollto" href="IMS_ClockingView"><h3>Check-IN</h3></a></li>
+          <li><a class="nav-link scrollto o" href="IMS_EmpProfile">Profile</a></li>
+          <li><a class="nav-link scrollto o" href=" IMS_empDash">Dashboard</a></li>
+          <li><a class="getstarted scrollto" href="logout">Logout</a></li>
+          {% else %}
+         
+          {% endif %}
+        
+         
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+        
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+  
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+
+     <div class="container p-4 my-4 border" style="height: 10cm; width: 18cm; border-color: rgb(201, 198, 22); border-radius: 8px;">
+       <div class="row justify-content-center">
+         <div class="col-xl-7 col-lg-9 text-center">
+
+
+         
+        
+         </div>
+       </div>
+      
+       {% comment %} <div class="text-center">
+       <h1>Welcome, {{user.username}}</h1>
+       </div> {% endcomment %}
+       <div class="text-center">
+        <h2>WELCOME TO PCRAQ</h2>
+        <div style="height: 24px;"></div>
+        <p>
+          PCRAQ system is a game-changer for companies/organizations seeking to elevate their human capital management.
+          By seamlessly managing productivity, clocking, reporting, assessments, and skills development, the system unlocks untapped potential and drives upskilling, ultimately enabling businesses to achieve greater efficiency, profitable, and success.
+        </p>
+        <a href="{% url 'login_user'%}" class="btn-get-started scrollto">Employee</a>
+        </div>
+         <br>
+      
+        <br><br><br>
+     </div>
+    </div>
+      
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  
+
+ <!-- Vendor JS Files -->
+ <script src="{% static 'Lassets/vendor/purecounter/purecounter_vanilla.js' %} "></script>
+ <script src="{% static 'Lassets/vendor/aos/aos.js' %}"></script>
+ <script src="{% static 'Lassets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'Lassets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+ <script src="{% static 'Lassets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+ <script src="{% static 'Lassets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+ <script src="{% static 'Lassets/vendor/php-email-form/validate.js' %}"></script>
+
+ <!-- Template Main JS File -->
+ <script src="{% static 'Lassets/js/main.js' %}"></script>
+ 
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Clocking System</h3>
+            <p>
+              Office H1/3 BLOCK H <br>
+              ELIDZ Science Technology Park, Harbor Arterial<br>
+              Road, Sunnyridge <br>
+              5201<br>
+              East London<br><br>
+              <strong>Phone:</strong> +27 81 499 8200<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>PAICTA</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>PAICTA</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/ -->
+          Designed by <a href="https://bootstrapmade.com/">PAICTA</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<h1>Login</h1>
+
+{% block content%}
+    {% if unlock_success %}
+        <p class="success-message">Welcome</p>
+    {% endif %}
+
+    {% if unlock_error %}
+        <p class="error-message">{{ unlock_error }}</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" action = "{% url 'login' %}">
+        {% csrf_token %}
+        <label for="face_image">Upload an image of your face</label>
+        <input type="file" id="face_image" name="image"><br><br>
+        <button>Unlock</button>
+        <a href="{% url 'login_user' %}">Login with username</a>
+    </form>
+{% endblock %}

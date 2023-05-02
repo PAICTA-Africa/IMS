@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Clocking timesheet.{% endblock title %}
+{% block content %}
+<div class="main-wrapper"> 
+    <div class="header">
+                
+        <!-- Logo -->
+        <div class="header-left">
+            <a href="{% url 'index' %}" class="logo">
+                <img src="{% static 'assets/img/Paicta-Logo-Png-1.png' %}" width="40" height="40" alt="">
+            </a>
+        </div>
+        <!-- /Logo -->
+        
+        <a id="toggle_btn" href="javascript:void(0);">
+            <span class="bar-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </a>
+        
+        <!-- Header Title -->
+        <div class="page-title-box">
+            <h3>Clocking View</h3>
+        </div>
+        <!-- /Header Title -->
+        
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
+        
+        <!-- Header Menu -->
+        <ul class="nav user-menu">
+        
+            <!-- Search -->
+            <li class="nav-item">
+                <div class="top-nav-search">
+                    <a href="javascript:void(0);" class="responsive-search">
+                        <i class="fa fa-search"></i>
+                </a>
+                    <form action="search.html">
+                        <input class="form-control" type="text" placeholder="Search here">
+                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </li>
+            <li class="nav-item dropdown has-arrow main-drop">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <span class="user-img"><img src="{% static 'assets/img/profiles/avatar-21.jpg'%}" alt="">
+                    <span class="status online"></span></span>
+                    <span>{{ user.first_name }}</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </li>
+        </ul>
+        <!-- /Header Menu -->
+        
+        <!-- Mobile Menu -->
+        <div class="dropdown mobile-user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="profile.html">My Profile</a>
+                <a class="dropdown-item" href="settings.html">Settings</a>
+                <a class="dropdown-item" href="login.html">Logout</a>
+            </div>
+        </div>
+        <!-- /Mobile Menu -->
+        
+    </div> 
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                    <li class="menu-title"> 
+                        <span>Main</span>
+                    </li>
+                    <li class="submenu">
+                        <a href="{% url 'index' %}" class="active"><i class="la la-clock"></i> <span> Clocking View</span> <span class="menu-arrow"></span></a>
+                        <ul style="display: none;">
+                            {% comment %} <li><a href="{% url 'clock_action' user_id=user.id%}">Timesheet Success</a></li> {% endcomment %}
+                            <li><a href="#">Pending Request</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="page-title">Welcome, This records your clock in data.</h3>
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message | safe }}
+                            </div>
+                        {% endfor %}
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item">Clocking View</li>
+                            <li class="breadcrumb-item active">Timesheet</li>
+                        </ul>
+                    </div>
+                    <br>
+                    
+                    <div class="col-md-12 d-flex">
+                        
+                        <div class="card card-table flex-fill">
+                            <div class="card-header">
+                                <h3 class="card-title mb-0">Timesheet</h3>
+                                <a href="{% url 'index' %}" class="btn btn-danger" style="float: right; margin-top: -35px; margin-right: 5px;">Clock out</a>
+                                <a href="{% url 'index' %}" class="btn btn-warning" style="float: right; margin-top: -35px; margin-right: 5px; color: white;">Start Break</a>
+                                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#add_leave" style="float: right; margin-top: -35px; margin-right: 5px; color: white;"><i class="fa fa-plus"></i> Apply for a Leave</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table custom-table table-nowrap mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Logging Time</th>
+                                                <th>Clocking in time</th>
+                                                {% comment %} <th>Clocking IP Address</th> {% endcomment %}
+                                                <th>Clocking Address</th>
+                                                {% comment %} <th>Break Started At</th> {% endcomment %}
+                                                <th>Break Start Time</th>
+                                                {% comment %} <th>Break Ended At</th> {% endcomment %}
+                                                <th>Break End Time</th>
+                                                {% comment %} <th>Clocking out At</th> {% endcomment %}
+                                                <th>Clocking out Time</th>
+                                            </tr>
+                                            {% for x in mydata %}
+                                            <tr>
+                                                <td>08:00 am</td>
+                                                <td>{{ x.clockin_time }}</td>
+                                                <td><span style="color: red">{{ x.clockin_time }}</span> </td>
+                                                <td>--:--</td>
+                                                <td>--:--</td>
+                                                <td>--:--</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                 
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

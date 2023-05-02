@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login | IMS{% endblock %}
+{% block content %}
+    <div class="main-wrapper">
+        <div class="account-content">
+            {% comment %} <a href="job-list.html" class="btn btn-primary apply-btn">Apply Job</a> {% endcomment %}
+            <div class="container">
+            
+                <!-- Account Logo -->
+                <div class="account-logo">
+                    <a href="{% url 'login_user'%}"><img src="{% static 'assets/img/Paicta-Logo-Png-1.png' %}" alt="Dreamguy's Technologies"></a>
+                </div>
+                <!-- /Account Logo -->
+                
+                <div class="account-box">
+                    <div class="account-wrapper">
+                        <h3 class="account-title">Login</h3>
+                        <p class="account-subtitle">Access to our dashboard</p>
+                        {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message | safe }}
+                        </div>
+                        {% endfor %}
+                        <!-- Account Form -->
+                        <form action="{% url 'login_user' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="form-group">
+									<label>Email</label>
+									<input class="form-control" type="email" name="email" placeholder="Nomathamsanqa">
+								</div>
+                                <div class="form-group">
+									<label>Password</label>
+									<input class="form-control" type="password" name="password" placeholder="Password">
+								</div>
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <a class="text-muted" href="forgot-password.html">
+                                            Forgot password?
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary account-btn" type="submit">Login</button>
+                            </div>
+                            <div class="account-footer">
+                                <p>Don't have an account yet? <a href="{% url 'register' %}">Register</a></p>
+                            </div>
+                        </form>
+                        <!-- /Account Form -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
